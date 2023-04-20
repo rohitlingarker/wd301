@@ -25,7 +25,7 @@ const TaskList = (props: Props) => {
       dueDate={task.dueDate}
     />
   ));
-  return <>{list}</>;
+  return <ul>{list}</ul>;
 };
 
 export default TaskList;
