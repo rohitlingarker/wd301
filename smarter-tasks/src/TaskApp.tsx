@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { TaskItem } from "./types";
 
 import TaskForm from "./TaskForm";
@@ -53,7 +53,7 @@ const TaskApp = (props: TaskAppProp) => {
   const [taskAppState, setTaskAppState] = useLocalStorage<TaskAppState>("tasks", {
     tasks: [],
   });
-  
+
   const addTask = (task: TaskItem) => {
     setTaskAppState({ tasks: [...taskAppState.tasks, task] });
   };
