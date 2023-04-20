@@ -1,6 +1,7 @@
 import React from "react"
 import { TaskItem } from "./types";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface TaskProp {
   title: string,
   description:string,

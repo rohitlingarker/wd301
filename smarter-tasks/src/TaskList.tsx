@@ -5,6 +5,7 @@ interface Props {
   tasks: TaskItem[];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface State {}
 
 // class TaskList extends React.Component<Props, State> {
