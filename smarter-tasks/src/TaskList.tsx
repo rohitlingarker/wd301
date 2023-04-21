@@ -3,6 +3,7 @@ import Task from "./Task";
 import { TaskItem } from "./types";
 interface Props {
   tasks: TaskItem[];
+  delTask:(task:TaskItem)=>void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -24,6 +25,7 @@ const TaskList = (props: Props) => {
       title={task.title}
       description={task.description}
       dueDate={task.dueDate}
+      deleteTask={props.delTask}
     />
   ));
   return <ul>{list}</ul>;

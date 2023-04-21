@@ -57,10 +57,24 @@ const TaskApp = (props: TaskAppProp) => {
   const addTask = (task: TaskItem) => {
     setTaskAppState({ tasks: [...taskAppState.tasks, task] });
   };
+  const compare = (task1:TaskItem,task2 : TaskItem)=>{
+    return (task1.title===task2.title && task1.description===task2.description && task1.dueDate===task2.dueDate)
+  }
+  const delTask = (task: TaskItem) => {
+    let i=taskAppState.tasks.length;
+    let tasks = taskAppState.tasks
+    while(i--){
+      if(compare(tasks[i],task)){
+        tasks.splice(i,1)
+        setTaskAppState({"tasks":tasks})
+        break
+      }
+    }
+  };
   return (
     <div>
       <TaskForm addTask={addTask} />
-      <TaskList tasks={taskAppState.tasks} />
+      <TaskList tasks={taskAppState.tasks} delTask={delTask} />
     </div>
   );
 };

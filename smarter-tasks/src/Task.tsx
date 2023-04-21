@@ -24,6 +24,10 @@ interface TaskProp {
 // }
 
 const Task = (props: TaskItem) => {
+  const deleteTask: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    console.log("clicked");
+    props.deleteTask(props)
+  };
   return (
     <li className="TaskItem shadow-md border border-slate-100">
       <h2 className="text-base font-bold my-1">{props.title}</h2>
@@ -31,6 +35,9 @@ const Task = (props: TaskItem) => {
       <p className="text-sm text-slate-500">
         Description: {props.description}
       </p>
+      <button onClick={deleteTask} className="deleteTaskButton ">
+        del
+      </button>
     </li>
   );
 };
