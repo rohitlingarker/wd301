@@ -3,7 +3,7 @@ import Task from "./Task";
 import { TaskItem } from "./types";
 interface Props {
   tasks: TaskItem[];
-  delTask:(task:TaskItem)=>void;
+  delTask:(id:number)=>void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -22,6 +22,7 @@ const TaskList = (props: Props) => {
   const list = props.tasks.map((task, idx) => (
     <Task
       key={idx}
+      id={idx}
       title={task.title}
       description={task.description}
       dueDate={task.dueDate}

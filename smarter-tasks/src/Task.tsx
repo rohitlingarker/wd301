@@ -1,5 +1,6 @@
 import React from "react"
 import { TaskItem } from "./types";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface TaskProp {
@@ -23,18 +24,22 @@ interface TaskProp {
 
 // }
 
-const Task = (props: TaskItem) => {
+const Task = (item: TaskItem) => {
   const deleteTask: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     console.log("clicked");
-    props.deleteTask(props)
+    item.deleteTask(item.id)
   };
   return (
-    <li className="TaskItem shadow-md border border-slate-100">
-      <h2 className="text-base font-bold my-1">{props.title}</h2>
-      <p className="text-sm text-slate-500">{props.dueDate}</p>
+    
+    <li className="TaskItem shadow-md border flex justify-evenly border-slate-100">
+
+      <Link to={`/tasks/${item.id}`}>
+        <h2 className="text-base font-bold my-1">{item.title}</h2>
+      </Link>
+      {/* <p className="text-sm text-slate-500">{item.dueDate}</p>
       <p className="text-sm text-slate-500">
-        Description: {props.description}
-      </p>
+        Description: {item.description}
+      </p> */}
       <button onClick={deleteTask} className="deleteTaskButton ">
         del
       </button>

@@ -5,10 +5,11 @@ interface TaskFormProps {
   addTask: (task: TaskItem) => void;
 }
 interface TaskFormState {
+    id:number,
     title: string,
     description:string,
     dueDate:string;
-    deleteTask:(task:TaskItem)=>void;
+    deleteTask:(id:number)=>void;
 }
 
 // class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
@@ -63,11 +64,14 @@ interface TaskFormState {
 
 const TaskForm = (props: TaskFormProps) => {
   const [formState, setFormState] = React.useState<TaskFormState>({
+    id:-1,
     title: "",
     description: "",
     dueDate: "",
     deleteTask:()=>{}
   });
+
+  
   const titleChanged: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     console.log(`${event.target.value}`);
     setFormState({ ...formState, title: event.target.value });
@@ -82,6 +86,7 @@ const TaskForm = (props: TaskFormProps) => {
     console.log(`${event.target.value}`);
     setFormState({ ...formState, dueDate: event.target.value });
   };
+  
 
   const addTask: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -89,8 +94,10 @@ const TaskForm = (props: TaskFormProps) => {
     if (formState.title.length === 0 || formState.dueDate.length === 0) {
       return;
     }
+    
+    
     props.addTask(formState);
-    setFormState({ title: "", description: "", dueDate: "",deleteTask:()=>{} });
+    setFormState({ id:-1, title: "", description: "", dueDate: "",deleteTask:()=>{} });
   };
 
   return (

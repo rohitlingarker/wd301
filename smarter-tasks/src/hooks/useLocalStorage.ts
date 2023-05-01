@@ -8,6 +8,7 @@ const getStoredValue =<T>(key: string, defaultValue: T):T => {
   return defaultValue;
 };
 
+
 export const useLocalStorage = <T,>(
   key: string,
   defaultValue: T
@@ -17,7 +18,13 @@ export const useLocalStorage = <T,>(
   });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
+    let temp = JSON.parse(JSON.stringify(value))
+    console.log(temp.tasks)
+    for(let i=0;i<temp.tasks.length;i++){
+      temp.tasks[i].id = i;
+    }
+    
+    localStorage.setItem(key, JSON.stringify(temp));
   }, [key, value]);
 
   return [value, setValue];
