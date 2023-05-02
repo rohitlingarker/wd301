@@ -23,8 +23,6 @@ function App() {
        <Route path="/signin" element={ <Signin/>} />
        <Route path = "/notfound" element={<NotFound />} />
        <Route path = "*" element={<Navigate to="/notfound" />} />
-
-       
      </Routes>
     </div>
   );
