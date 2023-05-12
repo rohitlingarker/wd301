@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 const SigninForm: React.FC = () => {
-  const [email, setEmail] = useState('rohit@rohit');
-  const [password, setPassword] = useState('rohit');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
