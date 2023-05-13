@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const SignupForm: React.FC = () => {
-  const [organizationName, setOrganizationName] = useState('');
+  const [organisationName, setOrganizationName] = useState('');
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -21,7 +21,7 @@ const SignupForm: React.FC = () => {
       const response = await fetch(`${API_ENDPOINT}/organisations`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: organizationName, user_name: userName, email: userEmail, password: userPassword}),
+        body: JSON.stringify({ name: organisationName, user_name: userName, email: userEmail, password: userPassword}),
       });
 
       if (!response.ok) {
@@ -50,7 +50,7 @@ const SignupForm: React.FC = () => {
     <form onSubmit={handleSubmit}>
       <div>
         <label className="block text-gray-700 font-semibold mb-2">Organization Name:</label>
-        <input type="text" name="organizationName" id="organizationName" value={organizationName} onChange={(e) => setOrganizationName(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
+        <input type="text" name="organisationName" id="organisationName" value={organisationName} onChange={(e) => setOrganizationName(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
       </div>
       <div>
         <label className="block text-gray-700 font-semibold mb-2">Your Name:</label>
