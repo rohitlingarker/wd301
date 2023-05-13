@@ -15,7 +15,7 @@ const Dashboard: React.FC = () => {
         event.preventDefault();
         localStorage.removeItem('authToken');
         localStorage.removeItem('userData');
-        navigate('/');
+        navigate('/signin');
     };
 
     
