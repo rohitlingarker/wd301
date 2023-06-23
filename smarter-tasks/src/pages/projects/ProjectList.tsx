@@ -13,6 +13,9 @@ const ProjectList: React.FC = () => {
   // to call the useProjectsDispatch() hook.
   const dispatchProjects = useProjectsDispatch();
   
+  
+  
+
   useEffect(() => {
     // And I'll pass the `dispatchProjects` to `fetchProjects` function.
     fetchProjects(dispatchProjects)
