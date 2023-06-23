@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import { useNavigate } from 'react-router-dom';
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 
 
 const SignupForm: React.FC = () => {
-  const [organisationName, setOrganizationName] = useState('');
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
   const navigate = useNavigate();
 
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
@@ -88,6 +84,7 @@ const SignupForm: React.FC = () => {
         {...register("password",{required:true})}
         className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
       </div>
+      {errors.name && <span>This field is required</span>}
       <button type="submit" className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4">Sign up</button>
     </form>
   );
