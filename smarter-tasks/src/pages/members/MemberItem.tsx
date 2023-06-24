@@ -19,7 +19,6 @@ export default function MemberItem(props:any) {
   return (
     <div
         
-          key={member.id}
           className="p-6 member bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex justify-between"
         > 
           <div>

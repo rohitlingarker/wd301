@@ -17,6 +17,7 @@ const MemberList: React.FC = () => {
   useEffect(() => {
     // And I'll pass the `dispatchMembers` to `fetchMembers` function.
     fetchMembers(dispatchMembers)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <div className="grid gap-4 grid-cols-4 mt-5">

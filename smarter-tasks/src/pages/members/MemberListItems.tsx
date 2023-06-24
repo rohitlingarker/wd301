@@ -23,7 +23,7 @@ export default function MemberListItems() {
   return (
     <>
       {members.map((member: any) => (
-        <MemberItem member={member} />
+        <MemberItem key={member.id} member={member} />
       ))}
     </>
   );
