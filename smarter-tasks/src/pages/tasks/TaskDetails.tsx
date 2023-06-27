@@ -1,5 +1,5 @@
 import { Dialog, Listbox, Transition } from "@headlessui/react";
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useTasksDispatch, useTasksState } from "../../context/task/context";
@@ -9,6 +9,7 @@ import { useProjectsState } from "../../context/projects/context";
 import { TaskDetailsPayload } from "../../context/task/types";
 import CheckIcon from "@heroicons/react/24/outline/CheckIcon";
 import { useMembersState } from "../../context/members/context";
+import Comment from "./Comment";
 
 type TaskFormUpdatePayload = TaskDetailsPayload & {
   selectedPerson: string;
@@ -46,6 +47,7 @@ const TaskDetails = () => {
   const {
     register,
     handleSubmit,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     formState: { errors },
   } = useForm<TaskFormUpdatePayload>({
     defaultValues: {
@@ -202,6 +204,7 @@ const TaskDetails = () => {
                       </button>
                     </form>
                   </div>
+                  <Comment/>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
