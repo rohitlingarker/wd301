@@ -1,4 +1,4 @@
-import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import Signin from "../pages/signin"
 import Signup from "../pages/signup"
