@@ -1,10 +1,23 @@
-import React from "react";
-import { useCommentsState } from "../../context/comment/context";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useCommentsDispatch, useCommentsState } from "../../context/comment/context";
+import {  useParams } from "react-router-dom";
+import { fetchComments } from "../../context/comment/actions";
+import NewComment from "./NewComment";
 
 export default function CommentListItems() {
-  let state: any = useCommentsState();
-  const { comments, isLoading, isError, errorMessage } = state;
+  let commentState: any = useCommentsState();
+  let commentDispatch:any = useCommentsDispatch();
+  let { projectID, taskID } = useParams();
+
+  useEffect(()=>{
+    if (projectID && taskID){
+      fetchComments(commentDispatch,projectID,taskID);
+    }
+  },[commentDispatch, projectID, taskID]);
+
+  
+  
+  const { comments, isLoading, isError, errorMessage } = commentState;
   console.log("comments list :",comments);
 
   if (comments.length === 0 && isLoading) {
@@ -17,16 +30,23 @@ export default function CommentListItems() {
 
   return (
     <>
+      <NewComment/>
+      
       {comments.map((comment: any) => (
-        <Link
+
+          <div 
           key={comment.id}
-          to={`${comment.id}`}
-          className="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-        >
-          <h5 className="mb-2 text-xl font-medium tracking-tight text-gray-900 dark:text-white">
-            {comment.description}
-          </h5>
-        </Link>
+          className="comment"
+          >
+            <p>{comment.User.name}</p>
+            <h5 
+            // className="mb-2 text-xl font-medium tracking-tight text-gray-900 dark:text-white"
+            >
+              {comment.description}
+            </h5>
+
+          </div>
+        
       ))}
     </>
   );

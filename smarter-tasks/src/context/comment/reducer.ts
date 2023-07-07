@@ -57,7 +57,7 @@ interface Comment {
           errorMessage: action.payload,
         };
       case "ADD_COMMENT_SUCCESS":
-        return { ...state, comments: [...state.comments, action.payload] };
+        return state;
       default:
         return state;
     }

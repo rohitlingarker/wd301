@@ -4,7 +4,7 @@ export const fetchComments = async (dispatch: any,projectID: string,taskID:strin
   
   try {
     dispatch({ type: "FETCH_COMMENTS_REQUEST" });
-    const response = await fetch(`${API_ENDPOINT}/comments/${projectID}/tasks/${taskID}/comments`, {
+    const response = await fetch(`${API_ENDPOINT}/projects/${projectID}/tasks/${taskID}/comments`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json', "Authorization": `Bearer ${token}` },
     });
@@ -19,12 +19,12 @@ export const fetchComments = async (dispatch: any,projectID: string,taskID:strin
 export const addComment = async (dispatch: any,projectID: string,taskID:string , comment:Comment) => {
     try {
       const token = localStorage.getItem("authToken") ?? "";
-      const response = await fetch(`${API_ENDPOINT}/comments/${projectID}/tasks/${taskID}/comments`, {
+      const response = await fetch(`${API_ENDPOINT}/projects/${projectID}/tasks/${taskID}/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', "Authorization": `Bearer ${token}` },
   
         // Next, I'll pass the `args` here
-        body: JSON.stringify(comment), 
+        body: JSON.stringify({description:comment}), 
       });
       if (!response.ok) {
         throw new Error('Failed to create comment');
@@ -33,14 +33,13 @@ export const addComment = async (dispatch: any,projectID: string,taskID:string ,
       if (data.errors && data.errors.length > 0) {
         return { ok: false, error: data.errors[0].message }
       }
+      
+      fetchComments(dispatch,projectID,taskID);
+      
+      dispatch({ type: 'ADD_COMMENT_SUCCESS' });
+
   
-      // And if everything goes well with the API call, we will dispatch an action, 
-      // with `type` set to `ADD_PROJECT_SUCCESS` and in `payload` we will send the 
-      // new comment `data`.
-      dispatch({ type: 'ADD_COMMENT_SUCCESS', payload: data });
-  
-      // Next, I'll return a status called "ok", with value `true`
-      // as everything went well.
+      
       return { ok: true }
     } catch (error) {
       console.error('Operation failed:', error);
