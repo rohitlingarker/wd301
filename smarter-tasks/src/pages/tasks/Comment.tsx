@@ -18,7 +18,12 @@ export default function CommentListItems() {
   
   
   const { comments, isLoading, isError, errorMessage } = commentState;
-  console.log("comments list :",comments);
+  // console.log("comments list :",comments);
+
+  const formatDate = (date:string)=>{
+    const fDate = new Date(date);
+    return fDate.toLocaleDateString()
+  }
 
   if (comments.length === 0 && isLoading) {
     return <span>Loading...</span>;
@@ -36,9 +41,15 @@ export default function CommentListItems() {
 
           <div 
           key={comment.id}
-          className="comment"
+          className="comment border"
           >
-            <p>{comment.User.name}</p>
+            <p
+            className="flex justify-between"
+            >{comment.User.name}
+              <span className=""
+              >{formatDate(comment.createdAt)}</span>
+            </p>
+            
             <h5 
             // className="mb-2 text-xl font-medium tracking-tight text-gray-900 dark:text-white"
             >
