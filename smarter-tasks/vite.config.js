@@ -7,4 +7,7 @@ import svgrPlugin from "vite-plugin-svgr"
 
 export default defineConfig({
   plugins: [react(), viteTsconfigPaths() , svgrPlugin()],
+  build: {
+    outDir: 'build', // This should match the directory specified in Netlify settings
+  },
 });
