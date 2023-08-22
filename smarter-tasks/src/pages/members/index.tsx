@@ -1,5 +1,5 @@
-import { Suspense } from "react";
-import MemberList from "./MemberList";
+import React, { Suspense } from "react";
+const MemberList = React.lazy(() => import("./MemberList"));
 import NewMember from "./NewMember";
 import ErrorBoundary from "../../components/ErrorBoundary";
 
@@ -7,10 +7,11 @@ const Members = () => {
   return (
     <>
       <div className="flex justify-between">
-        <h2 className="text-2xl font-medium tracking-tight">Members</h2>
+        <h2 className="text-2xl font-medium tracking-tight text-slate-700">
+          Members
+        </h2>
         <NewMember />
       </div>
-      
       <ErrorBoundary>
         <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
           <MemberList />
@@ -19,5 +20,6 @@ const Members = () => {
     </>
   );
 };
-export default Members;
 
+
+export default Members;

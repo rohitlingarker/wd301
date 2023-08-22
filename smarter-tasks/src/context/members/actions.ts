@@ -5,7 +5,7 @@ export const fetchMembers = async (dispatch: any) => {
   const token = localStorage.getItem("authToken") ?? "";
   
   try {
-    
+    setTimeout(()=>{},3000);
     dispatch({ type: "FETCH_MEMBERS_REQUEST" });
     
     const response = await fetch(`${API_ENDPOINT}/users`, {
@@ -13,6 +13,9 @@ export const fetchMembers = async (dispatch: any) => {
       headers: { 'Content-Type': 'application/json', "Authorization": `Bearer ${token}` },
     });
     const data = await response.json();
+    
+    
+    
     
     
     dispatch({ type: "FETCH_MEMBERS_SUCCESS", payload: data });
